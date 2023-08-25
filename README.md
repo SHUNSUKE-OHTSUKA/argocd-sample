@@ -1,9 +1,7 @@
-# argocd-sample
+# k8s-apps
 
-## k8s
-
-### Deployment,Service,Ingress
+### Namespace,Deployment,Service,Ingress
 
 ```
-kubectl apply -f webserver/httpbin/
+kubectl apply -f webserver/*
 ```
