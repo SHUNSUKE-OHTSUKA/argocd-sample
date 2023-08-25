@@ -18,8 +18,9 @@ pip install -r requirements.txt
 pre-commit install
 ```
 
-### Namespace,Deployment,Service,Ingress
+## httpbin(Namespace,Deployment,Service,Ingress)
 
 ```
-kubectl apply -f webservice*/*
+kubectl apply -f webservice1/httpbin
+sudo ssh -N -i $(minikube ssh-key) -L 80:localhost:80 docker@$(minikube ip)
 ```
