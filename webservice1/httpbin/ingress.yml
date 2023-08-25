@@ -8,7 +8,7 @@ spec:
   rules:
   - host: httpbin.minikube.local
     http:
-      paths: 
+      paths:
       - path: /
         pathType: Prefix
         backend:
