@@ -7,6 +7,3 @@
 ```
 kubectl apply -f webserver/httpbin/
 ```
-
-
-### 
