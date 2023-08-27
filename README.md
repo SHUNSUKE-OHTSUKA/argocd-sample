@@ -22,6 +22,5 @@ pre-commit install
 
 ```
 kubectl apply -f webservice1/httpbin
-kubectl apply -f webservice1/nginx
-sudo ssh -N -i $(minikube ssh-key) -L 80:localhost:80 docker@$(minikube ip)
+kubectl apply -f webservice1/nginx-green
 ```
