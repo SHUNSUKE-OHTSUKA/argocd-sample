@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go
+  labels:
+    app: go
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go
+  template:
+    metadata:
+      labels:
+        app: go
+    spec:
+      containers:
+      - name: go
+        image: golang:1.21.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: go-main-file
+          mountPath: /usr/share/go/main.go
+          subPath: main.go
+          readOnly: true
+        command: ['go', 'run', '/usr/share/go/main.go']
+      volumes:
+        - name: go-main-file
+          configMap:
+            name: go-main
+            items:
+            - key: "main.go"
+              path: "main.go"
