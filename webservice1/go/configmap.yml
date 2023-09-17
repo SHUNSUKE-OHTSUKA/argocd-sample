@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: go-main
+  name: go-cm
   labels:
     app: go
 data:
@@ -19,6 +19,12 @@ data:
           "message": "Hello World!",
         })
       })
-      log.Fatal(r.Run())
+      log.Fatal(r.Run(":3000"))
     }
-
+  setup.sh: |
+    #!/bin/sh
+    cd /go/app/
+    go mod init app
+    go mod tidy
+    go build main.go
+    ./main

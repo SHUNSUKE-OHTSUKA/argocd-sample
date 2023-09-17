@@ -19,17 +19,27 @@ spec:
         image: golang:1.21.1
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
         volumeMounts:
+        - name: setup-file
+          mountPath: /go/setup.sh
+          subPath: setup.sh
         - name: go-main-file
-          mountPath: /usr/share/go/main.go
+          mountPath: /go/app/main.go
           subPath: main.go
           readOnly: true
-        command: ['go', 'run', '/usr/share/go/main.go']
+        command: ['sh', '/go/setup.sh']
       volumes:
         - name: go-main-file
           configMap:
-            name: go-main
+            name: go-cm
             items:
             - key: "main.go"
               path: "main.go"
+        - name: setup-file
+          configMap:
+            name: go-cm
+            items:
+            - key: "setup.sh"
+              path: "setup.sh"
+              mode: 0755
