@@ -15,12 +15,12 @@ data:
     func main() {
       log.Println("start server...")
       r := gin.Default()
+      r.Use(apmgin.Middleware(r))
       r.GET("/hello", func(context *gin.Context) {
         context.JSON(200, gin.H{
           "message": "Hello World!",
         })
       })
-      r.Use(apmgin.Middleware(r))
       log.Fatal(r.Run(":3000"))
     }
   setup.sh: |
