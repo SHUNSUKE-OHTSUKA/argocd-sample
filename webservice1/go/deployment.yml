@@ -28,7 +28,7 @@ spec:
         - name: ELASTIC_APM_ENVIRONMENT
           value: dev
         - name: ELASTIC_APM_VERIFY_SERVER_CERT
-          value: 'false'
+          value: false
         volumeMounts:
         - name: setup-file
           mountPath: /go/setup.sh
