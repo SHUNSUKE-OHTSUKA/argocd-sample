@@ -25,10 +25,10 @@ spec:
           value: go
         - name: ELASTIC_APM_SERVER_URL
           value: http://elastic-apm.minikube.local/
+        - name: ELASTIC_APM_SECRET_TOKEN
+          value: F1Ddpc39Xr58L06d46Tn3XNI
         - name: ELASTIC_APM_ENVIRONMENT
           value: dev
-        - name: ELASTIC_APM_VERIFY_SERVER_CERT
-          value: 'false'
         volumeMounts:
         - name: setup-file
           mountPath: /go/setup.sh
