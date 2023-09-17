@@ -13,7 +13,6 @@ data:
       "go.elastic.co/apm/module/apmgin/v2"
     )
     func main() {
-      mux := http.NewServeMux()
       log.Println("start server...")
       r := gin.Default()
       r.GET("/hello", func(context *gin.Context) {
@@ -23,7 +22,6 @@ data:
       })
       r.Use(apmgin.Middleware(r))
       log.Fatal(r.Run(":3000"))
-      http.ListenAndServe(":8080", apmhttp.Wrap(mux))
     }
   setup.sh: |
     #!/bin/sh
