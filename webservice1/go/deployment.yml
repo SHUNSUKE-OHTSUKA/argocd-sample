@@ -20,6 +20,15 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
+        env:
+        - name: ELASTIC_APM_SERVICE_NAME
+          value: go
+        - name: ELASTIC_APM_SECRET_TOKEN
+          value: ''
+        - name: ELASTIC_APM_SERVER_URL
+          value: http://elastic-apm.minikube.local
+        - name: ELASTIC_APM_ENVIRONMENT
+          value: dev
         volumeMounts:
         - name: setup-file
           mountPath: /go/setup.sh

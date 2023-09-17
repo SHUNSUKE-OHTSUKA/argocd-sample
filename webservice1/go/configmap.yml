@@ -10,8 +10,11 @@ data:
     import (
       "log"
       "github.com/gin-gonic/gin"
+      "net/http"
+      "go.elastic.co/apm/module/apmhttp"
     )
     func main() {
+      mux := http.NewServeMux()
       log.Println("start server...")
       r := gin.Default()
       r.GET("/hello", func(context *gin.Context) {
@@ -20,6 +23,7 @@ data:
         })
       })
       log.Fatal(r.Run(":3000"))
+      http.ListenAndServe(":8080", apmhttp.Wrap(mux))
     }
   setup.sh: |
     #!/bin/sh
