@@ -27,6 +27,8 @@ spec:
           value: http://elastic-apm.minikube.local/
         - name: ELASTIC_APM_ENVIRONMENT
           value: dev
+        - name: ELASTIC_APM_VERIFY_SERVER_CERT
+          value: false
         volumeMounts:
         - name: setup-file
           mountPath: /go/setup.sh
