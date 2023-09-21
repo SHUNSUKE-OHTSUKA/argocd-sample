@@ -29,11 +29,8 @@ spec:
           value: F1Ddpc39Xr58L06d46Tn3XNI
         - name: ELASTIC_APM_ENVIRONMENT
           value: dev
-        - name: ELASTIC_APM_SERVER_CA_CERT
-          valueFrom:
-            secretKeyRef:
-              name: secret-volume
-              key: elastic-apm-crt
+        - name: ELASTIC_APM_SERVER_CA_CERT_FILE
+          value: /go/elastic-apm-server-ca.crt
         - name: ELASTIC_APM_VERIFY_SERVER_CERT
           value: 'true'
         volumeMounts:
@@ -44,8 +41,9 @@ spec:
           mountPath: /go/app/main.go
           subPath: main.go
           readOnly: true
-        - name: secret-volume
-          mountPath: /etc/secret-volume
+        - name: apm-cert-file
+          mountPath: /go/elastic-apm-server-ca.crt
+          subpath: elastic-apm-server-ca.crt
         command: ['sh', '/go/setup.sh']
       volumes:
         - name: go-main-file
@@ -61,7 +59,12 @@ spec:
             - key: "setup.sh"
               path: "setup.sh"
               mode: 0755
-        - name: secret-volume
+          volumes:
+        - name: apm-cert-file
           secret:
             secretName: apm-secret
+            items:
+            - key: "elastic-apm-server-ca.crt"
+              path: "elastic-apm-server-ca.crt"
+
 
