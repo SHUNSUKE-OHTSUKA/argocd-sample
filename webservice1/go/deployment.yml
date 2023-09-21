@@ -30,7 +30,7 @@ spec:
         - name: ELASTIC_APM_ENVIRONMENT
           value: dev
         - name: ELASTIC_APM_SERVER_CA_CERT_FILE
-          value: /mnt/c/Users/wmgoz/develop/kubernetes/k8s-setup/elastic-apm-ca.crt
+          value: /go/elastic-apm-ca.crt
         - name: ELASTIC_APM_VERIFY_SERVER_CERT
           value: 'true'
         volumeMounts:
@@ -40,6 +40,10 @@ spec:
         - name: go-main-file
           mountPath: /go/app/main.go
           subPath: main.go
+          readOnly: true
+        - name: secret-tls
+          mountPath: /go/elastic-apm-ca.crt
+          subPath: elastic-apm-ca.crt
           readOnly: true
         command: ['sh', '/go/setup.sh']
       volumes:
@@ -56,3 +60,9 @@ spec:
             - key: "setup.sh"
               path: "setup.sh"
               mode: 0755
+        - name: secret-tls
+          secret:
+            name: secret-tls
+            items:
+            - key: "elastic-apm-ca.crt"
+              path: "elastic-apm-ca.crt"
