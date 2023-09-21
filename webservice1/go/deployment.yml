@@ -32,7 +32,7 @@ spec:
         - name: ELASTIC_APM_SERVER_CA_CERT_FILE
           value: /mnt/c/Users/wmgoz/develop/kubernetes/k8s-setup/elastic-apm-ca.crt
         - name: ELASTIC_APM_VERIFY_SERVER_CERT
-          value: true
+          value: 'true'
         volumeMounts:
         - name: setup-file
           mountPath: /go/setup.sh
