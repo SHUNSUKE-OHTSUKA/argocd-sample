@@ -29,8 +29,10 @@ spec:
           value: F1Ddpc39Xr58L06d46Tn3XNI
         - name: ELASTIC_APM_ENVIRONMENT
           value: dev
+        - name: ELASTIC_APM_SERVER_CERT
+          value: /go/elastic-apm-tls.crt
         - name: ELASTIC_APM_SERVER_CA_CERT_FILE
-          value: /go/elastic-apm-server-ca.crt
+          value: /go/elastic-apm-ca.crt
         - name: ELASTIC_APM_VERIFY_SERVER_CERT
           value: 'true'
         volumeMounts:
@@ -41,9 +43,15 @@ spec:
           mountPath: /go/app/main.go
           subPath: main.go
           readOnly: true
-        - name: apm-cert-file
-          mountPath: /go/elastic-apm-server-ca.crt
-          subPath: elastic-apm-server-ca.crt
+        - name: apm-ca-crt-file
+          mountPath: /go/elastic-apm-ca.crt
+          subPath: elastic-apm-ca.crt
+        - name: apm-tls-crt-file
+          mountPath: /go/elastic-apm-tls.crt
+          subPath: elastic-apm-tls.crt
+        - name: apm-tls-key-file
+          mountPath: /go/elastic-apm-tls.key
+          subPath: elastic-apm-tls.key
         command: ['sh', '/go/setup.sh']
       volumes:
         - name: go-main-file
@@ -63,7 +71,9 @@ spec:
           secret:
             secretName: apm-secret
             items:
-            - key: "elastic-apm-server-ca.crt"
-              path: "elastic-apm-server-ca.crt"
-
-
+            - key: "elastic-apm-ca.crt"
+              path: "elastic-apm-ca.crt"
+            - key: "elastic-apm-tls.crt"
+              path: "elastic-apm-tls.crt"
+            - key: "elastic-apm-tls.key"
+              path: "elastic-apm-tls.key"
