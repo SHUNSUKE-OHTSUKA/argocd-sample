@@ -35,10 +35,10 @@ spec:
           value: 'true'
         volumeMounts:
         - name: setup-file
-          mountPath: /go/setup.sh
+          mountPath: /go
           subPath: setup.sh
         - name: go-main-file
-          mountPath: /go/app/main.go
+          mountPath: /go/app
           subPath: main.go
           readOnly: true
         - name: apm-cert-file
