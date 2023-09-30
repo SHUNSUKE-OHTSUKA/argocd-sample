@@ -35,14 +35,15 @@ spec:
           value: 'true'
         volumeMounts:
         - name: setup-file
-          mountPath: /go
+          mountPath: /go/setup.sh
           subPath: setup.sh
         - name: go-main-file
-          mountPath: /go/app
+          mountPath: /go/app/main.go
           subPath: main.go
           readOnly: true
         - name: apm-cert-file
           mountPath: /go
+          subPath: elastic-apm-server-ca.crt
         command: ['sh', '/go/setup.sh']
       volumes:
         - name: go-main-file
