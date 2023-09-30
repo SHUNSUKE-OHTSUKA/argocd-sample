@@ -42,8 +42,7 @@ spec:
           subPath: main.go
           readOnly: true
         - name: apm-cert-file
-          mountPath: /go/elastic-apm-server-ca.crt
-          subpath: elastic-apm-server-ca.crt
+          mountPath: /go/
         command: ['sh', '/go/setup.sh']
       volumes:
         - name: go-main-file
