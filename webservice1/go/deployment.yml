@@ -59,7 +59,6 @@ spec:
             - key: "setup.sh"
               path: "setup.sh"
               mode: 0755
-          volumes:
         - name: apm-cert-file
           secret:
             secretName: apm-secret
