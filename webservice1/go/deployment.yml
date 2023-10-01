@@ -49,9 +49,6 @@ spec:
         - name: apm-tls-crt-file
           mountPath: /go/elastic-apm-tls.crt
           subPath: elastic-apm-tls.crt
-        - name: apm-tls-key-file
-          mountPath: /go/elastic-apm-tls.key
-          subPath: elastic-apm-tls.key
         command: ['sh', '/go/setup.sh']
       volumes:
         - name: go-main-file
@@ -79,9 +76,4 @@ spec:
             items:
             - key: "elastic-apm-tls.crt"
               path: "elastic-apm-tls.crt"
-        - name: apm-tls-key-file
-          secret:
-            secretName: apm-secret
-            items:
-            - key: "elastic-apm-tls.key"
-              path: "elastic-apm-tls.key"
+
