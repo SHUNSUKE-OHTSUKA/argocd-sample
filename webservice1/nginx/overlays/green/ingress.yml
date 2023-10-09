@@ -2,12 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: nginx-ingress
-  labels:
-    app: nginx
 spec:
-  ingressClassName: nginx
   rules:
-  - host: nginx-red.minikube.local
+  - host: nginx-green.minikube.local
     http:
       paths:
       - path: /

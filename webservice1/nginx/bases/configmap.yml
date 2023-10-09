@@ -9,11 +9,11 @@ data:
     <html>
       <head>
         <title>
-        Nginx-Green
+        Nginx
         </title>
       <body>
-        <h1 style="background-color: green;">
-        Welcome to Nginx-Green!
+        <h1>
+        Welcome to Nginx!
         </h1>
       </body>
     </html>
